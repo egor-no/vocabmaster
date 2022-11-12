@@ -14,7 +14,10 @@ public class Vocab {
     private List<Word> words;
     private final VocabScheduler scheduler;
 
-    public Vocab() {
+    public Vocab(String name, String languageFrom, String languageTo) {
+        this.name = name;
+        this.languageFrom = languageFrom;
+        this.languageTo = languageTo;
         words = new ArrayList<>();
         scheduler = new VocabScheduler();
     }
@@ -23,8 +26,19 @@ public class Vocab {
         words.add(word);
     }
 
+    public boolean removeWord(Word word) {
+        return words.remove(word);
+    }
+
     public List<Word> getTodayWords() {
         return scheduler.getTodayWords();
+    }
+
+    public Word searchWord(String key) {
+        return words.stream().filter(word -> {
+            return word.getWord().equals(key);
+        })
+            .findFirst().orElse(null);
     }
 
     public String getName() {
@@ -65,6 +79,12 @@ public class Vocab {
 
     public void setWords(List<Word> words) {
         this.words = words;
+    }
+
+    public boolean contains(Word word) {
+        if (searchWord(word.getWord()) != null)
+            return true;
+        return false;
     }
 
     private class VocabScheduler {

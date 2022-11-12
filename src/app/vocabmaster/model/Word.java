@@ -28,6 +28,10 @@ public class Word {
         translations.add(variant);
     }
 
+    public void removeTranslation(String variant) {
+        translations.remove(variant);
+    }
+
     public void addTranslations(String translations) {
         String[] variants = translations.split(",");
         for (int i = 0; i < variants.length; i++) {
