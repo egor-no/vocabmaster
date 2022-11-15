@@ -2,6 +2,7 @@ package app.vocabmaster.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,10 @@ public class Vocab {
 
     public void addWord(Word word) {
         words.add(word);
+    }
+
+    public void addWords(Collection<Word> words) {
+        words.addAll(words);
     }
 
     public boolean removeWord(Word word) {

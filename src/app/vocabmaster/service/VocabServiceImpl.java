@@ -4,6 +4,8 @@ import app.vocabmaster.data.VocabRepository;
 import app.vocabmaster.model.Vocab;
 import app.vocabmaster.model.Word;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class VocabServiceImpl implements VocabService {
@@ -24,6 +26,14 @@ public class VocabServiceImpl implements VocabService {
     @Override
     public void addWord(Word word) {
         currentVocab.addWord(word);
+        repository.setModified(currentVocab.getName());
+    }
+
+    public void buildAndAddWord(String original, String translationsToParse) {
+        String[] parsed = translationsToParse.split(",");
+        List<String> translations = Arrays.asList(parsed);
+        Word newword = new Word(original, translations);
+        currentVocab.addWord(newword);
         repository.setModified(currentVocab.getName());
     }
 

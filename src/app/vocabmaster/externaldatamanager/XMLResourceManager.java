@@ -57,24 +57,5 @@ public class XMLResourceManager implements ResourceManager {
         this.writer = writer;
     }
 
-    private class PathManager {
-
-        private HashMap<String, Path> paths;
-
-        private void addPath(Path path, String vocabName) {
-            paths.put(vocabName, path);
-        }
-
-        private Path getPath(String vocabName) {
-            return paths.get(vocabName);
-        }
-
-        private boolean containsPath(String vocabName) {
-            if (paths.containsKey(vocabName))
-                return true;
-            return false;
-        }
-
-    }
 
 }

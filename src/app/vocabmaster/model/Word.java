@@ -10,17 +10,24 @@ public class Word {
     private List<String> translations;
     private final WordScheduler wordScheduler;
 
-    public Word(String word, String translations) {
+    public Word(String word, String translation) {
         this.word = word;
         this.translations = new ArrayList<>();
-        addTranslations(translations);
+        translations.add(translation);
         wordScheduler = new WordScheduler();
     }
 
-    public Word(String word, String translations, int skipDays, LocalDate date) {
+    public Word(String word, List<String> translations) {
         this.word = word;
         this.translations = new ArrayList<>();
-        addTranslations(translations);
+        translations.addAll(translations);
+        wordScheduler = new WordScheduler();
+    }
+
+    public Word(String word, List<String> translations, int skipDays, LocalDate date) {
+        this.word = word;
+        this.translations = new ArrayList<>();
+        translations.addAll(translations);
         wordScheduler = new WordScheduler(skipDays, date);
     }
 
@@ -32,11 +39,8 @@ public class Word {
         translations.remove(variant);
     }
 
-    public void addTranslations(String translations) {
-        String[] variants = translations.split(",");
-        for (int i = 0; i < variants.length; i++) {
-            this.translations.add(variants[i]);
-        }
+    public void parseAndAddTranslations(String translations) {
+
     }
 
     public String getWord() {
